@@ -1,0 +1,30 @@
+<section class="form">
+  <form class="user-form" *ngIf="!loggedIn">
+    <mat-form-field class="form-field" appearance="fill">
+      <mat-label>Enter the 4 digit OTP</mat-label>
+      <input matInput [formControl]="otp" />
+      <mat-error *ngIf="otp.hasError('required')">
+        Phone number is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="otp.hasError('minlength') || otp.hasError('maxlength')">
+        OTP must be 4 characters
+      </mat-error>
+    </mat-form-field>
+    <h4 *ngIf="message" class="error">{{ message }}</h4>
+    <button
+      mat-stroked-button
+      type="button"
+      color="primary"
+      (click)="onLogin()"
+    >
+      Login
+    </button>
+  </form>
+  <div class="user-prof" *ngIf="loggedIn">
+    <h1>Authenticated Successfully</h1>
+    <h2 class="user-name">User : {{ User?.name }}</h2>
+    <h2 class="user-name">User id : {{ User?.id }}</h2>
+
+    <a routerLink="/signup">Home</a>
+  </div>
+</section>

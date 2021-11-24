@@ -1,0 +1,34 @@
+<section class="form">
+  <form class="user-form" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="form-field" appearance="fill">
+      <mat-label>Name*</mat-label>
+      <input matInput formControlName="name" />
+      <mat-error *ngIf="userForm.controls.name.hasError('required')">
+        Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-field" appearance="fill">
+      <mat-label>Phone_number*</mat-label>
+      <input matInput formControlName="phoneNumber" />
+      <mat-error *ngIf="userForm.controls.phoneNumber.hasError('required')">
+        Phone number is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="userForm.controls.phoneNumber.hasError('minlength')">
+        Phone number must be 11 characters
+      </mat-error>
+    </mat-form-field>
+    <h4 *ngIf="formSubmitted" class="error">{{ message }}</h4>
+    <button mat-raised-button *ngIf="genOtp" (click)="generateOtp()">
+      Generate OTP
+    </button>
+    <button
+      mat-raised-button
+      color="accent"
+      type="submit"
+      *ngIf="!formSubmitted"
+      [disabled]="userForm.invalid"
+    >
+      Signup
+    </button>
+  </form>
+</section>

@@ -1,0 +1,39 @@
+<section class="form">
+  <form class="user-form">
+    <mat-form-field class="form-field" appearance="fill">
+      <mat-label>Phone_number*</mat-label>
+      <input matInput [formControl]="phoneNumber" />
+      <mat-error *ngIf="phoneNumber.hasError('required')">
+        Phone number is <strong>required</strong>
+      </mat-error>
+      <mat-error
+        *ngIf="
+          phoneNumber.hasError('minlength') || phoneNumber.hasError('maxlength')
+        "
+      >
+        Phone number must be 11 characters
+      </mat-error>
+    </mat-form-field>
+    <h1 *ngIf="User?.otp">OTP : {{ User.otp }}</h1>
+    <button
+      mat-stroked-button
+      type="button"
+      color="primary"
+      *ngIf="User?.otp"
+      routerLink="/login"
+      (click)="onLogin()"
+    >
+      Login
+    </button>
+  </form>
+  <h4 class="error">{{ message }}</h4>
+  <button
+    mat-raised-button
+    color="accent"
+    type="submit"
+    (click)="onGetOtp()"
+    [disabled]="phoneNumber.invalid"
+  >
+    Click here to get OTP
+  </button>
+</section>

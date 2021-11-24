@@ -1,0 +1,26 @@
+section.form {
+  min-width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-image: linear-gradient(to top, #feada6 0%, #f5efef 100%);
+
+  .user-form {
+    width: 50%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    .form-field {
+      width: 20rem;
+    }
+    .error {
+      color: rgb(219, 95, 105);
+      letter-spacing: 3px;
+      font-weight: bold;
+    }
+  }
+}
